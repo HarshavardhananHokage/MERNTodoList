@@ -1,0 +1,5 @@
+# Node Modules Directory
+node_modules/
+
+# Visual Studio Code Workspace config
+MernTODO.code-workspace

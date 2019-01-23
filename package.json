@@ -1,0 +1,33 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "A basic TODO list created using MERN stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "nodemon --exec babel-node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshavardhananHokage/MERNTodoList.git"
+  },
+  "author": "Harshavardhanan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarshavardhananHokage/MERNTodoList/issues"
+  },
+  "homepage": "https://github.com/HarshavardhananHokage/MERNTodoList#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.6",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
+  }
+}
