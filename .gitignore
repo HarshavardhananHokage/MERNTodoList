@@ -3,3 +3,6 @@ node_modules/
 
 # Visual Studio Code Workspace config
 MernTODO.code-workspace
+
+# Personal Folder
+general/

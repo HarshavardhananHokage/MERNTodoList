@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 10px;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -11,4 +11,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+table {
+   border-collapse: collapse;
+  border-spacing: 10px;
+}
+table th,
+table td{
+  border: 1px solid green;
+  padding: 5px 10px 5px 10px;
+  text-align: center;
 }
