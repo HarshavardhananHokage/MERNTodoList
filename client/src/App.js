@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       todos: [
-        {id: 1, todo: "Buy Milk", timestamp: new Date(), isCompleted: false},
+        {id: 1, todo: "Buy Milk", timestamp: new Date(), isCompleted: true},
         {id: 2, todo: "Take dog for walk", timestamp: new Date(), isCompleted: false},
         {id: 3, todo: "Clean Room", timestamp: new Date(), isCompleted: false},
       ],
@@ -16,6 +16,8 @@ class App extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleComplete = this.handleComplete.bind(this);
   }
 
   handleSubmit(e) {
@@ -34,12 +36,32 @@ class App extends Component {
     })
   }
 
+  handleDelete(id) {
+    let newTodos = this.state.todos.filter((item) => item.id !== id);
+    this.setState({
+      todos: newTodos
+    })
+  }
+
+  handleComplete(id) {
+    let updatedTodos = this.state.todos.map((item) => {
+      if(item.id === id) {
+        return Object.assign({}, item, {isCompleted: !item.isCompleted});
+      }
+      return item;
+    });
+
+    this.setState({
+      todos: updatedTodos
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <div>
           <h2>TodoList</h2>
-          <TodoList todos={this.state.todos} />
+          <TodoList todos={this.state.todos} handleDelete={this.handleDelete} handleComplete={this.handleComplete} />
         </div>
         <div>
           <h3>Add a new todo below</h3>

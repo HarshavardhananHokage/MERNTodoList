@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Todo = ({todo}) => {
+const Todo = ({todo, handleDelete, handleComplete}) => {
     return (
         <tr>
             <td>{todo.id}</td>
-            <td>{todo.todo}</td>
+            <td className={todo.isCompleted ? "completed" : "pending"}>{todo.todo}</td>
             <td>{todo.timestamp.toLocaleString()}</td>
-            <td>{todo.isCompleted ? "Completed" : "Pending"}</td>
-            <td><button>Delete</button></td>
+            <td><input type="checkbox" className="todoCheck" checked={todo.isCompleted} 
+                onChange={() => handleComplete(todo.id)} /></td>
+            <td><button onClick={() => handleDelete(todo.id)}>Delete</button></td>
         </tr>
     )
 }

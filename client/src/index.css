@@ -23,3 +23,8 @@ table td{
   padding: 5px 10px 5px 10px;
   text-align: center;
 }
+
+td.completed {
+  text-decoration: line-through;
+  color: brown;
+}
