@@ -14,6 +14,24 @@ class App extends Component {
       ],
       todo: ""
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let id = this.state.todos.length + 1;
+    let todos = [...this.state.todos, {id: id, todo: this.state.todo, timestamp: new Date(), isCompleted: false}];
+    this.setState({
+      todos: todos,
+      todo: ""
+    })
+  }
+
+  handleChange(e) {
+    this.setState({
+      todo: e.target.value
+    })
   }
 
   render() {
@@ -24,8 +42,8 @@ class App extends Component {
           <TodoList todos={this.state.todos} />
         </div>
         <div>
-          <h2>This is a div for adding todos</h2>
-          <AddTodo />
+          <h3>Add a new todo below</h3>
+          <AddTodo currTodo={this.state.todo} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         </div>
       </div>
     );
