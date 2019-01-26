@@ -6,3 +6,6 @@ MernTODO.code-workspace
 
 # Personal Folder
 general/
+
+# Database Details
+backend/model/connection.js
