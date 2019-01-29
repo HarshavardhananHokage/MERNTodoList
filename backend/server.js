@@ -1,11 +1,14 @@
 import express from 'express';
 import bodyparser from 'body-parser';
+import cors from 'cors';
+
 import todosRouter from './routes/todos';
 
 const app = express();
 
 app.use(bodyparser.urlencoded({ extended: false}));
 app.use(bodyparser.json());
+app.use(cors());
 
 app.get('/', function(req, res,) {
     res.writeHead(200, {'Content-Type': 'text/plain'});

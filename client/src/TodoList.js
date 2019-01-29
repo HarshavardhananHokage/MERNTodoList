@@ -7,7 +7,6 @@ const TodoList = (props) => {
             <table>
                 <tbody>
                     <tr>
-                        <th>ID</th>
                         <th>Todo</th>
                         <th>Timestamp</th>
                         <th>Is Completed</th>

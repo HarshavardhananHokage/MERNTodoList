@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList'
 import AddTodo from './AddTodo';
+import * as api from './api/api';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        {id: 1, todo: "Buy Milk", timestamp: new Date(), isCompleted: true},
-        {id: 2, todo: "Take dog for walk", timestamp: new Date(), isCompleted: false},
-        {id: 3, todo: "Clean Room", timestamp: new Date(), isCompleted: false},
-      ],
+      todos: [],
       todo: ""
     }
     this.handleChange = this.handleChange.bind(this);
@@ -20,14 +17,36 @@ class App extends Component {
     this.handleComplete = this.handleComplete.bind(this);
   }
 
+  componentDidMount() {
+    api.getTodos().then((data) => this.updateTodos(data));
+  }
+
+  updateTodos(data) {
+    let todosList = data.map((todo) => {
+      return { id: todo._id, todo: todo.todo, timestamp: new Date(todo.timestamp), isCompleted: todo.isCompleted };
+    });
+
+    this.setState({
+      todos: todosList
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     let id = this.state.todos.length + 1;
-    let todos = [...this.state.todos, {id: id, todo: this.state.todo, timestamp: new Date(), isCompleted: false}];
+    let newTodo = { id: id, todo: this.state.todo, timestamp: new Date(), isCompleted: false };
+    let todos = [...this.state.todos, newTodo];
     this.setState({
       todos: todos,
       todo: ""
-    })
+    });
+
+    api.postTodo(newTodo).then((data) => {
+      let newTodos = this.state.todos.map((todo) => todo.id === id ? Object.assign({}, newTodo, {id: data._id}) : todo);
+      this.setState({
+        todos: newTodos
+      });
+    });
   }
 
   handleChange(e) {
@@ -40,20 +59,26 @@ class App extends Component {
     let newTodos = this.state.todos.filter((item) => item.id !== id);
     this.setState({
       todos: newTodos
-    })
+    });
+
+    api.deleteTodo(id);
   }
 
   handleComplete(id) {
+    let todo = {};
     let updatedTodos = this.state.todos.map((item) => {
-      if(item.id === id) {
-        return Object.assign({}, item, {isCompleted: !item.isCompleted});
+      if (item.id === id) {
+        todo = Object.assign({}, item, { isCompleted: !item.isCompleted });
+        return todo;
       }
       return item;
     });
 
     this.setState({
       todos: updatedTodos
-    })
+    });
+
+    api.updateTodo(todo);
   }
 
   render() {

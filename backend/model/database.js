@@ -20,12 +20,12 @@ export function addTodo(todo, createdDate, isCompleted) {
     let successMessage = '{"message": "Inserted successfully into DB"}';
 
     return new Promise((resolve, reject) => {
-        newTodo.save((err) => {
+        newTodo.save((err, product) => {
             if (err) {
                 console.log("Error inserting todo:")
                 reject(err);
             } else
-                resolve(successMessage);
+                resolve(product);
         });
     })
 }
