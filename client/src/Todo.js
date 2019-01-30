@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from './redux/actions';
 
 const Todo = ({todo, handleDelete, handleComplete}) => {
     return (
@@ -12,4 +14,11 @@ const Todo = ({todo, handleDelete, handleComplete}) => {
     )
 }
 
-export default Todo;
+function mapDispatchToProps(dispatch) {
+    return {
+        handleDelete: (id) => dispatch(actions.deleteTodo(id)),
+        handleComplete: (id) => dispatch(actions.updateTodo(id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Todo);
