@@ -18,9 +18,10 @@ export function getTodo(id) {
         .catch(err => err.data);
 }
 
-export function updateTodo(todo) {
+export function updateTodo(id, isCompleted) {
     const PUT_TODO = `${API_BASE_PATH}${PATH_TODO}`;
-    return axios.put(PUT_TODO, { id: todo.id, isCompleted: todo.isCompleted })
+    console.log(`${id} ==> ${isCompleted}`);
+    return axios.put(PUT_TODO, { id: id, isCompleted: isCompleted })
         .then(result => result.data)
         .catch(err => err.data);
 }

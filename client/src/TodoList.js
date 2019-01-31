@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Todo from './Todo';
 
 const TodoList = (props) => {
@@ -13,9 +14,9 @@ const TodoList = (props) => {
                         <th>Delete Todo</th>
                     </tr>
                     {
+                        props.isLoading ? <p>Loading...</p> :
                         props.todos.map((todo) =>
-                            <Todo key={todo.id} todo={todo} handleDelete={props.handleDelete} 
-                                handleComplete={props.handleComplete}/>
+                            <Todo key={todo.id} todo={todo} />
                         )
                     }
                 </tbody>
@@ -24,4 +25,11 @@ const TodoList = (props) => {
     )
 }
 
-export default TodoList;
+function mapStateToProps(state) {
+    return {
+        todos: state.todos,
+        isLoading: state.isLoading
+    }
+}
+
+export default connect(mapStateToProps)(TodoList);
