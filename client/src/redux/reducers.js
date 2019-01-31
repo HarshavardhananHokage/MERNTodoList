@@ -1,13 +1,14 @@
 import * as actions from './actions';
 
 const initialState = {
-    todos: []
+    todos: [],
+    isLoading: false
 }
 
 function rootReducer(state = initialState, action) {
 
     if(action.type === actions.GET_TODOS) {
-        return Object.assign({}, state, { todos: action.todos });
+        return Object.assign({}, state, { todos: action.todos, isLoading: false });
     } else if (action.type === actions.UPDATE_TODO) {
         let newTodos = state.todos.map((todo) => {
             if (todo.id === action.id) {
@@ -22,6 +23,9 @@ function rootReducer(state = initialState, action) {
     } else if (action.type === actions.ADD_TODO) {
         let newTodos = [...state.todos, action.todo];
         return Object.assign({}, state, { todos: newTodos });
+    }
+    else if (action.type === actions.IS_LOADING) {
+        return Object.assign({}, state, {isLoading: true});
     }
     else {
         return state;

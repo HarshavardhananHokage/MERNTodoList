@@ -14,6 +14,7 @@ const TodoList = (props) => {
                         <th>Delete Todo</th>
                     </tr>
                     {
+                        props.isLoading ? <p>Loading...</p> :
                         props.todos.map((todo) =>
                             <Todo key={todo.id} todo={todo} />
                         )
@@ -26,7 +27,8 @@ const TodoList = (props) => {
 
 function mapStateToProps(state) {
     return {
-        todos: state.todos
+        todos: state.todos,
+        isLoading: state.isLoading
     }
 }
 
