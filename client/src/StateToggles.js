@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { toggleTodos } from './redux/actions';
 
 let StateToggles = (props) => {
@@ -32,6 +33,11 @@ function mapStateToProps(state) {
     return {
         selectedToggle: state.toggle
     }
+}
+
+StateToggles.propTypes = {
+    selectedToggle: PropTypes.string,
+    handleToggleChange: PropTypes.func
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StateToggles);

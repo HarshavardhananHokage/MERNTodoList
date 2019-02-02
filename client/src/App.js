@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import TodoList from './TodoList'
 import AddTodo from './AddTodo';
 import SearchTodo from './SearchTodo';
@@ -40,6 +41,10 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchTodos: () => dispatch(getTodos())
   }
+}
+
+App.propTypes = {
+  fetchTodos: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(App);

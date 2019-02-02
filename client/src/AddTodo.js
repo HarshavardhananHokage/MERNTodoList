@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uuidv from 'uuid';
+import PropTypes from 'prop-types';
 import { addTodo } from './redux/actions';
 
 class AddTodo extends Component {
@@ -45,6 +46,10 @@ function mapDispatchToProps(dispatch) {
     return {
         submitTodo: (todo) => dispatch(addTodo(todo))
     }
+}
+
+AddTodo.propTypes = {
+    submitTodo: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(AddTodo);
