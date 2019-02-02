@@ -36,7 +36,7 @@ function mapStateToProps(state) {
 }
 
 TodoList.propTypes = {
-    todos: PropTypes.array,
+    todos: PropTypes.array.isRequired,
     isLoading: PropTypes.bool,
     toggle: PropTypes.string
 };
