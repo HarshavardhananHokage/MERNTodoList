@@ -24,7 +24,8 @@ export function getTodos() {
        dispatch({type: IS_LOADING});
        return api.getTodos().then((data) => {
            let todoList = data.map((todo) => {
-               return { id: todo._id, todo: todo.todo, timestamp: new Date(todo.timestamp), isCompleted: todo.isCompleted };
+               let completedDate = todo.completedDate === undefined ? undefined : new Date(todo.completedDate);
+               return { id: todo._id, todo: todo.todo, timestamp: new Date(todo.timestamp), isCompleted: todo.isCompleted, completedDate: completedDate };
            });
            return todoList;
        }).then((todos) => { dispatch({ type: GET_TODOS, todos: todos})});
@@ -40,8 +41,9 @@ export function getTodosByID(id) {
 
 export function updateTodo(id, isCompleted) {
     return function(dispatch) {
-        dispatch({ type: UPDATE_TODO, id});
-        return api.updateTodo(id, !isCompleted);
+        let compDate = new Date();
+        dispatch({ type: UPDATE_TODO, todo: {id, compDate}});
+        return api.updateTodo(id, !isCompleted, compDate);
     }
 }
 

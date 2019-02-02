@@ -17,8 +17,6 @@ export function addTodo(todo, createdDate, isCompleted) {
         isCompleted: isCompleted
     });
 
-    let successMessage = '{"message": "Inserted successfully into DB"}';
-
     return new Promise((resolve, reject) => {
         newTodo.save((err, product) => {
             if (err) {
@@ -59,10 +57,10 @@ export function getTodoByID(id) {
     })
 }
 
-export function updateTodo(id, isCompleted) {
+export function updateTodo(id, isCompleted, completedDate) {
     let successMessage = '{"message": "Updated successfully in DB"}';
     return new Promise((resolve, reject) => {
-        Todo.findByIdAndUpdate(id, { isCompleted: isCompleted }, (err) => {
+        Todo.findByIdAndUpdate(id, { isCompleted: isCompleted, completedDate: completedDate }, (err) => {
             if (err) {
                 console.log("Error updating todo with id => " + id);
                 reject(err);

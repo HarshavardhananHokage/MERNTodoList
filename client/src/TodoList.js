@@ -4,6 +4,7 @@ import Todo from './Todo';
 
 const TodoList = (props) => {
     return (
+        props.isLoading ? <p>Loading...</p> :
         <div>
             <table>
                 <tbody>
@@ -11,10 +12,10 @@ const TodoList = (props) => {
                         <th>Todo</th>
                         <th>Timestamp</th>
                         <th>Is Completed</th>
+                        <th>Completed Date</th>
                         <th>Delete Todo</th>
                     </tr>
                     {
-                        props.isLoading ? <p>Loading...</p> :
                         props.todos.map((todo) =>
                             <Todo key={todo.id} todo={todo} />
                         )

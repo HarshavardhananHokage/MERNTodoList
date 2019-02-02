@@ -11,8 +11,8 @@ function rootReducer(state = initialState, action) {
         return Object.assign({}, state, { todos: action.todos, isLoading: false });
     } else if (action.type === actions.UPDATE_TODO) {
         let newTodos = state.todos.map((todo) => {
-            if (todo.id === action.id) {
-                 return Object.assign({}, todo, { isCompleted: !todo.isCompleted });
+            if (todo.id === action.todo.id) {
+                 return Object.assign({}, todo, { isCompleted: !todo.isCompleted, completedDate: action.todo.compDate });
             }
             return todo;
         });
