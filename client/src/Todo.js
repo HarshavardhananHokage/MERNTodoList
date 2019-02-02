@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from './redux/actions';
 
-const Todo = ({todo, handleDelete, handleComplete}) => {
+const Todo = ({todo, handleDelete, handleComplete, toggle}) => {
+    function returnToggleClassName() {
+        if (toggle === 'inprogress' && todo.isCompleted)
+            return "hide";
+        if (toggle === 'completed' && !todo.isCompleted) 
+            return "hide";
+        else 
+            return null;
+    }
     return (
-        <tr>
+        <tr className={returnToggleClassName()}>
             <td className={todo.isCompleted ? "completed" : "pending"}>{todo.todo}</td>
             <td>{todo.timestamp.toLocaleString()}</td>
             <td><input type="checkbox" className="todoCheck" checked={todo.isCompleted} 
@@ -22,4 +31,8 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
+Todo.propTypes = {
+    handleDelete: PropTypes.func,
+    handleComplete: PropTypes.func
+}
 export default connect(null, mapDispatchToProps)(Todo);

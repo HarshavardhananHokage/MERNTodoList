@@ -8,6 +8,7 @@ export const DELETE_TODO = 'DELETE_TODO';
 export const IS_LOADING = 'IS_LOADING';
 export const FIRE_SEARCH = 'FIRE_SEARCH';
 export const UPDATE_FILTER = 'UPDATE_FILTER';
+export const TOGGLE_STATE = 'TOGGLE_STATE';
 
 export function addTodo(todo) {
     return function(dispatch, getState) {
@@ -70,3 +71,6 @@ export function fireSearch(term) {
     return {type: FIRE_SEARCH, term};
 }
 
+export function toggleTodos(toggle) {
+    return {type: TOGGLE_STATE, toggle};
+}

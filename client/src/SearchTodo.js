@@ -9,7 +9,7 @@ let SearchTodo = (props) => {
     }
     
     return(
-        <div>
+        <div id="search">
             <label htmlFor="searchtext">Search: </label>
             <input type="text" name="searchtext" onChange={handleChange}/>
         </div>
