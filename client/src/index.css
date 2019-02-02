@@ -28,3 +28,19 @@ td.completed {
   text-decoration: line-through;
   color: brown;
 }
+
+/* #search {
+  margin-top: 10px;
+} */
+
+#toggles {
+  float: right;
+}
+
+#container {
+  width: 600px;
+}
+
+.hide {
+  display: none; 
+}

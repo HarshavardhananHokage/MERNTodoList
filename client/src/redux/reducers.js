@@ -4,7 +4,8 @@ const initialState = {
     todos: [],
     isLoading: false,
     searchTerm: "",
-    filterTodos: []
+    filterTodos: [],
+    toggle: "all"
 }
 
 function rootReducer(state = initialState, action) {
@@ -31,6 +32,9 @@ function rootReducer(state = initialState, action) {
         let searchTerm = action.term;
         let filteredTodos = state.todos.filter((item) => item.todo.toLowerCase().includes(searchTerm));
         return Object.assign({}, state, {filterTodos: filteredTodos, searchTerm});
+    }
+    else if (action.type === actions.TOGGLE_STATE) {
+        return Object.assign({}, state, {toggle: action.toggle});
     }
     else {
         return state;
