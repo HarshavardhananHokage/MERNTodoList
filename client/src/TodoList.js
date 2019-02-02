@@ -28,7 +28,7 @@ const TodoList = (props) => {
 
 function mapStateToProps(state) {
     return {
-        todos: state.todos,
+        todos: state.filterTodos,
         isLoading: state.isLoading
     }
 }

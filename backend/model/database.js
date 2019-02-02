@@ -10,6 +10,8 @@ mongoose.connect(db_details, { useNewUrlParser: true }, (err) => {
     }
 });
 
+mongoose.set('useFindAndModify', false);
+
 export function addTodo(todo, createdDate, isCompleted) {
     let newTodo = new Todo({
         todo: todo,
@@ -59,6 +61,7 @@ export function getTodoByID(id) {
 
 export function updateTodo(id, isCompleted, completedDate) {
     let successMessage = '{"message": "Updated successfully in DB"}';
+    console.log("Came Here");
     return new Promise((resolve, reject) => {
         Todo.findByIdAndUpdate(id, { isCompleted: isCompleted, completedDate: completedDate }, (err) => {
             if (err) {
@@ -73,7 +76,6 @@ export function updateTodo(id, isCompleted, completedDate) {
 
 export function deleteTodo(id) {
     let successMessage = '{"message": "Deleted successfully from DB"}';
-
     return new Promise((resolve, reject) => {
         Todo.findByIdAndDelete(id, (err) => {
             if (err) {

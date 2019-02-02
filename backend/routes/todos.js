@@ -21,7 +21,6 @@ router.get('/todo/:id', (req, res, next) => {
 
 router.post('/todo', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
-    console.log(req.body);
     db.addTodo(req.body.todo, req.body.timestamp, req.body.isCompleted)
         .then((out) => res.status(200).send(out))
         .catch((err) => res.status(500).send(err));
