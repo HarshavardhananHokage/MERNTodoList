@@ -9,6 +9,7 @@ const Todo = ({todo, handleDelete, handleComplete}) => {
             <td>{todo.timestamp.toLocaleString()}</td>
             <td><input type="checkbox" className="todoCheck" checked={todo.isCompleted} 
                 onChange={() => handleComplete(todo.id, todo.isCompleted)} /></td>
+            <td>{ todo.completedDate !== undefined && todo.isCompleted ? todo.completedDate.toLocaleString() : "In Progress"}</td>
             <td><button onClick={() => handleDelete(todo.id)}>Delete</button></td>
         </tr>
     )

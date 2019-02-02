@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TodoList from './TodoList'
 import AddTodo from './AddTodo';
+import SearchTodo from './SearchTodo';
 import { getTodos } from './redux/actions';
 
 class App extends Component {
@@ -15,6 +16,8 @@ class App extends Component {
       <div className="App">
         <div>
           <h2>TodoList</h2>
+          <SearchTodo />
+          <br />
           <TodoList />
         </div>
         <div>

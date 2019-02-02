@@ -17,8 +17,11 @@ class AddTodo extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let newTodo = { id: uuidv(), todo: this.state.todo, timestamp: new Date(), isCompleted: false };
+        let newTodo = { id: uuidv(), todo: this.state.todo, timestamp: new Date(), isCompleted: false, completedDate: undefined };
         this.props.submitTodo(newTodo);
+        this.setState({
+            todo: ""
+        });
     }
 
     handleChange(e) {

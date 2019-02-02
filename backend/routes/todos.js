@@ -21,7 +21,6 @@ router.get('/todo/:id', (req, res, next) => {
 
 router.post('/todo', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
-    console.log(req.body);
     db.addTodo(req.body.todo, req.body.timestamp, req.body.isCompleted)
         .then((out) => res.status(200).send(out))
         .catch((err) => res.status(500).send(err));
@@ -37,7 +36,7 @@ router.delete('/todo/:id', (req, res, next) => {
 
 router.put('/todo', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
-    db.updateTodo(req.body.id, req.body.isCompleted)
+    db.updateTodo(req.body.id, req.body.isCompleted, req.body.completedDate)
         .then((out) => res.status(200).send(out))
         .catch((err) => res.status(500).send(err));
 });
