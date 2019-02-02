@@ -61,7 +61,6 @@ export function getTodoByID(id) {
 
 export function updateTodo(id, isCompleted, completedDate) {
     let successMessage = '{"message": "Updated successfully in DB"}';
-    console.log("Came Here");
     return new Promise((resolve, reject) => {
         Todo.findByIdAndUpdate(id, { isCompleted: isCompleted, completedDate: completedDate }, (err) => {
             if (err) {
